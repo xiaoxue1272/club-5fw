@@ -1,0 +1,23 @@
+{
+  "name": "club-5fw",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 5623 --host",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.2.45",
+    "vue-router": "^4.1.6"
+  },
+  "devDependencies": {
+    "@vicons/ionicons5": "^0.12.0",
+    "@vitejs/plugin-legacy": "^4.0.1",
+    "@vitejs/plugin-vue": "^4.0.0",
+    "naive-ui": "^2.34.3",
+    "vfonts": "^0.0.3",
+    "vite": "^4.1.0"
+  }
+}
