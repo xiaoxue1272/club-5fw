@@ -1,8 +1,8 @@
 import { createApp } from 'vue'
 import './style.css'
-import App from './App.vue'
+import App from './app/App.vue'
 import 'vfonts/Lato.css'
-import {appRouter}  from "./common/appRouter.js";
+import {appRouter}  from "./common/appRouter";
 
 // let routerApp = createApp()
 

@@ -1,18 +1,27 @@
 import {MenuOption} from "naive-ui";
+import { RouterLink } from "vue-router";
+import { h } from "vue";
+
+
+function createRouterLink(path: string, content: string) {
+  return h(RouterLink, {
+    to: path
+  }, content)
+}
 
 
 const appMenuOptions: MenuOption[] = [
   {
     disabled: false,
     key: "home",
-    icon: null,
+    icon: undefined,
     label: "HOME",
     show: true
   },
   {
     disabled: false,
     key: "space",
-    icon: null,
+    icon: undefined,
     label: "动态",
     show: true
   },
@@ -45,14 +54,14 @@ const appMenuOptions: MenuOption[] = [
   {
     disabled: false,
     key: "share",
-    icon: null,
+    icon: undefined,
     label: "分享",
     show: true
   },
   {
     disabled: false,
     key: "live",
-    icon: null,
+    icon: undefined,
     label: "LIVE",
     show: true
   },
