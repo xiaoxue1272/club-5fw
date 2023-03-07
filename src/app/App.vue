@@ -1,18 +1,17 @@
 <script setup lang="ts">
-import layoutHeader from './layout/LayoutHeader.vue'
-import layoutContent from './layout/LayoutContent.vue'
 import {ref} from 'vue'
 import {
   NConfigProvider,
   NGlobalStyle,
   NLayout,
-  GlobalTheme,
   darkTheme,
 } from 'naive-ui'
 import dateZhCN from "naive-ui/es/locales/date/zhCN"
 import zhCN from 'naive-ui/es/locales/common/zhCN'
+import LayoutHeader from "./layout/LayoutHeader.vue";
+import LayoutContent from "./layout/LayoutContent.vue";
 
-const theme = ref<GlobalTheme | null>(null)
+const theme = ref(null)
 
 function switchTheme(flag: boolean) {
   if (flag) {
@@ -29,7 +28,6 @@ function switchTheme(flag: boolean) {
     <n-global-style/>
     <n-layout>
       <layout-header :switch-theme="switchTheme"/>
-      <router-link to="/home">home</router-link>
       <layout-content/>
     </n-layout>
   </n-config-provider>
@@ -37,8 +35,7 @@ function switchTheme(flag: boolean) {
 
 <style>
 .main-menu {
-  font-size: 16px;
-  font-weight: bold;
+  font-size: 20px;
 }
 .grid-item {
   margin: auto;

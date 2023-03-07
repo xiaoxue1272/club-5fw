@@ -4,9 +4,9 @@ import { h } from "vue";
 
 
 function createRouterLink(path: string, content: string) {
-  return h(RouterLink, {
+  return () => h(RouterLink, {
     to: path
-  }, content)
+  }, {default: () => content})
 }
 
 
@@ -15,7 +15,7 @@ const appMenuOptions: MenuOption[] = [
     disabled: false,
     key: "home",
     icon: undefined,
-    label: "HOME",
+    label: createRouterLink('/home', 'HOME'),
     show: true
   },
   {

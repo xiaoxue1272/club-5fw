@@ -4,10 +4,11 @@ import {createRouter, createWebHashHistory} from "vue-router";
 
 const routers = [
     {
-        path: "/home",
+        path: "/",
         component: () =>　import("../components/Home.vue"),
         name: "Club Home",
         alias: [
+            "/home",
             "/main",
         ]
     },
