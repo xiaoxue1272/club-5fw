@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import {LogInOutline} from "@vicons/ionicons5";
-import { NPopover, NIcon, NButton, NModal, NCard } from 'naive-ui';
-import {ref} from "vue";
+import { NPopover, NIcon, NButton } from 'naive-ui';
+import { ref, h } from "vue";
 
 const showLoginModal = ref(false)
+
+const component = h('span', '你好')
+
 </script>
 
 <template>
@@ -19,10 +22,5 @@ const showLoginModal = ref(false)
     </template>
     <span>登录</span>
   </n-popover>
-  <n-modal v-model:show="showLoginModal"
-           auto-focus
-           close-on-esc
-           :block-scroll="false">
-    <n-card>你好</n-card>
-  </n-modal>
+  <modal v-model:show="showLoginModal" :component="component"/>
 </template>
