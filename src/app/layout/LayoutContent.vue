@@ -54,7 +54,7 @@ const collapsed = ref(true)
       </n-layout-sider>
         <n-layout>
           <router-view #="{ Component }">
-            <transition name="view">
+            <transition name="view" mode="out-in">
               <component :is="Component"/>
             </transition>
           </router-view>

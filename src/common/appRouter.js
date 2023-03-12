@@ -5,12 +5,17 @@ import {createRouter, createWebHashHistory} from "vue-router";
 const routers = [
     {
         path: "/",
+        redirect: '/home'
+    },
+    {
+        path: "/home",
         component: () =>　import("../components/Home.vue"),
         name: "Club Home",
-        alias: [
-            "/home",
-            "/main",
-        ]
+    },
+    {
+        path: "/space",
+        component: () =>　import("../components/Space.vue"),
+        name: "Club Space",
     },
 ]
 

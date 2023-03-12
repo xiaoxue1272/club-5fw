@@ -8,8 +8,16 @@ import {
   NGridItem,
   NLayoutHeader,
   NLayout,
+  NIcon,
+  NButton,
 } from 'naive-ui'
 import AppMenuOptions from '../../common/appMenu'
+import {LogInOutline} from "@vicons/ionicons5";
+
+
+import { ref } from "vue";
+
+const showLoginModal = ref(false)
 
 import Login from "../login/login.vue";
 
@@ -48,14 +56,26 @@ defineProps(['switchTheme'])
           </n-switch>
         </n-grid-item>
         <n-grid-item class="grid-item">
-          <login/>
+          <n-popover trigger="hover">
+            <template #trigger>
+              <n-button round style="vertical-align: middle"
+                        :bordered="false"
+                        @click="showLoginModal = true">
+                <n-icon size="30">
+                  <log-in-outline/>
+                </n-icon>
+              </n-button>
+            </template>
+            <span>登录</span>
+          </n-popover>
+            <login v-model:show="showLoginModal"/>
         </n-grid-item>
       </n-grid>
     </n-layout>
   </n-layout-header>
 </template>
 
-<style scoped>
+<style>
 .main-top {
   position: fixed;
   top: 0;

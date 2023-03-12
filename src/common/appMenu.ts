@@ -22,7 +22,7 @@ const appMenuOptions: MenuOption[] = [
     disabled: false,
     key: "space",
     icon: undefined,
-    label: "动态",
+    label: createRouterLink('/space', "动态"),
     show: true
   },
   {
