@@ -12,7 +12,7 @@ const routers: RouteRecordRaw[] = [
     },
     {
         path: "/space",
-        component: () =>　import("../components/Home.vue"),
+        component: () =>　import("../components/Space.vue"),
         name: "Club Space",
     },
 ]
