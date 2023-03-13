@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "ES6",
+    "sourceMap": true,
+    "alwaysStrict": true,
+    "allowJs": true,
+    "removeComments": true,
+    "strictNullChecks": true,
+    "lib": ["ES6"]
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "src/components/*",
+    "src/app/*",
+    "src/common/*"
+  ]
+}

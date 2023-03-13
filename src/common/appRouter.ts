@@ -1,8 +1,6 @@
-import {createRouter, createWebHashHistory} from "vue-router";
+import {createRouter, createWebHashHistory, RouteRecordRaw} from "vue-router";
 
-
-
-const routers = [
+const routers: RouteRecordRaw[] = [
     {
         path: "/",
         redirect: '/home'
@@ -14,7 +12,7 @@ const routers = [
     },
     {
         path: "/space",
-        component: () =>　import("../components/Space.vue"),
+        component: () =>　import("../components/Home.vue"),
         name: "Club Space",
     },
 ]
