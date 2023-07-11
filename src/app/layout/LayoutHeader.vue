@@ -48,10 +48,10 @@ defineProps(['switchTheme'])
         <n-grid-item class="grid-item">
           <n-switch @update:value="switchTheme">
             <template #unchecked>
-              深色
+              🌙
             </template>
             <template #checked>
-              浅色
+              ☀️
             </template>
           </n-switch>
         </n-grid-item>
