@@ -1,4 +1,4 @@
-import {MenuOption} from "naive-ui";
+import { MenuOption } from "naive-ui";
 import { RouterLink } from "vue-router";
 import { h } from "vue";
 

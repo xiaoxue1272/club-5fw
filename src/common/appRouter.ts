@@ -1,7 +1,6 @@
 import {createRouter, createWebHashHistory} from "vue-router";
 
 
-
 const routers = [
     {
         path: "/",
@@ -9,12 +8,12 @@ const routers = [
     },
     {
         path: "/home",
-        component: () =>　import("../components/Home.vue"),
+        component: () => import("../components/Home.vue"),
         name: "Club Home",
     },
     {
         path: "/space",
-        component: () =>　import("../components/Space.vue"),
+        component: () =>　import("../components/Home.vue"),
         name: "Club Space",
     },
 ]

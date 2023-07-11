@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "ES6",
+        "removeComments": true,
+        "sourceMap": true,
+        "alwaysStrict": true,
+        "forceConsistentCasingInFileNames": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "strictNullChecks": true,
+        "allowJs": true,
+        "skipLibCheck": true,
+        "lib": ["ES6", "dom"]
+    },
+    "exclude": [
+        "node_modules"
+    ],
+    "include": [
+        "components/*",
+        "app/*",
+        "common/*"
+    ]
+}
