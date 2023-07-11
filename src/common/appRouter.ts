@@ -1,7 +1,6 @@
-import {createRouter, createWebHashHistory} from "vue-router";
+import {createRouter, createWebHashHistory, RouteRecordRaw} from "vue-router";
 
-
-const routers = [
+const routers: RouteRecordRaw[] = [
     {
         path: "/",
         redirect: '/home'

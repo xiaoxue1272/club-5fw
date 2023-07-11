@@ -34,15 +34,17 @@ const loginRules = ref<FormRules>({
               :show-label="false">
         <h2>CN⚡5FW</h2>
         <div class="form-item-layout">
-          <n-form-item first path="account" label-align="left">
-            <n-input v-model:value="loginData.account" placeholder="账号"/>
+          <n-form-item first path="account">
+            <n-input round type="text" v-model:value="loginData.account" placeholder="账号"/>
           </n-form-item>
-          <n-form-item first path="password" label-align="left">
-            <n-input v-model:value="loginData.password" placeholder="密码"/>
+          <n-form-item first path="password">
+            <n-input round type="password" v-model:value="loginData.password" placeholder="密码"/>
           </n-form-item>
         </div>
         <div>
-          <n-button strong secondary round type="info">登录&注册</n-button>
+          <n-button style="width: 70%;" strong secondary round type="info">
+            登录&注册
+          </n-button>
         </div>
       </n-form>
     </n-card>
@@ -51,6 +53,7 @@ const loginRules = ref<FormRules>({
 
 <style scoped>
 .login-card {
+  padding: 0 30px 30px;
   text-align: center;
   width: 20%;
 }
@@ -66,8 +69,9 @@ const loginRules = ref<FormRules>({
 }
 
 .form-item-layout {
+  text-align: initial;
   display: inline-block;
-  width: 60%;
+  width: 100%;
   margin: 0 auto;
 }
 </style>

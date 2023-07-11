@@ -4,6 +4,7 @@ import {
   NConfigProvider,
   NGlobalStyle,
   NLayout,
+  GlobalTheme,
   darkTheme,
 } from 'naive-ui'
 import dateZhCN from "naive-ui/es/locales/date/zhCN"
@@ -11,7 +12,7 @@ import zhCN from 'naive-ui/es/locales/common/zhCN'
 import LayoutHeader from "./layout/LayoutHeader.vue";
 import LayoutContent from "./layout/LayoutContent.vue";
 
-const theme = ref(null)
+const theme = ref<null | GlobalTheme>(null)
 
 function switchTheme(flag: boolean) {
   if (flag) {
