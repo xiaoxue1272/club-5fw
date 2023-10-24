@@ -8,36 +8,34 @@ import {
   NLayoutContent,
   NLayoutSider,
 } from 'naive-ui'
-import AppMenuOptions from '../../common/appMenu'
+import AppMenuOptions from '../../ts/common/appMenu'
 
 const collapsed = ref(true)
 
 </script>
+
 <template>
-  <n-layout-content>
-    <n-layout has-sider>
-      <n-layout-sider
+  <n-layout>
+    <n-layout-content>
+      <n-layout has-sider>
+        <n-layout-sider
             bordered
             collapse-mode="width"
-            :collapsed-width="0"
-            width="50%"
+            width="40%"
             :collapsed="collapsed"
             show-trigger="bar"
             @collapse="collapsed = true"
             @expand="collapsed = false"
-            class="main-left-layout-sider">
+            class="main-left-layout-slider">
           <n-grid
               collapsed
-              :collapsed-rows="11"
+              :collapsed-rows="8"
               :cols="1" style="height: 100%">
             <n-grid-item/>
             <n-grid-item/>
-            <n-grid-item/>
-            <n-grid-item/>
             <n-grid-item>
-              <span>CN⚡5FW</span>
+              <h2 v-if="!collapsed">CN⚡5FW</h2>
             </n-grid-item>
-            <n-grid-item/>
             <n-grid-item class="grid-item">
               <n-menu
                   :collapsed="collapsed"
@@ -51,9 +49,9 @@ const collapsed = ref(true)
             <n-grid-item/>
             <n-grid-item/>
           </n-grid>
-      </n-layout-sider>
+        </n-layout-sider>
         <n-layout>
-          <router-view #="{ Component }">
+          <router-view class="layout-router-view" #="{ Component }">
             <transition name="view" mode="out-in">
               <component :is="Component"/>
             </transition>
@@ -61,7 +59,9 @@ const collapsed = ref(true)
         </n-layout>
       </n-layout>
     </n-layout-content>
+  </n-layout>
 </template>
+
 <style scoped>
 .view-enter-active,
 .view-leave-active {
@@ -73,12 +73,12 @@ const collapsed = ref(true)
   opacity: 0;
 }
 @media (min-width: 1000px) {
-  .main-left-layout-sider {
+  .main-left-layout-slider {
     display: none;
   }
 }
 @media (max-width: 1000px) {
-  .main-left-layout-sider {
+  .main-left-layout-slider {
     position: fixed;
     left: 0;
     top: 0;
@@ -86,4 +86,5 @@ const collapsed = ref(true)
     height: 100%;
   }
 }
+
 </style>

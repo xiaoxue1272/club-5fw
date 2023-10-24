@@ -1,26 +1,21 @@
 <script setup lang="ts">
-import {ref} from 'vue'
 import {
   NConfigProvider,
   NGlobalStyle,
-  NLayout,
-  GlobalTheme,
-  darkTheme,
+  useOsTheme,
 } from 'naive-ui'
 import dateZhCN from "naive-ui/es/locales/date/zhCN"
 import zhCN from 'naive-ui/es/locales/common/zhCN'
-import LayoutHeader from "./layout/LayoutHeader.vue";
 import LayoutContent from "./layout/LayoutContent.vue";
+import {switchTheme, theme} from "../ts/common/basic"
+import LayoutHeader from "./layout/LayoutHeader.vue";
 
-const theme = ref<null | GlobalTheme>(null)
-
-function switchTheme(flag: boolean) {
-  if (flag) {
-    theme.value = darkTheme
-  } else {
-    theme.value = null
-  }
+if (useOsTheme().value == "dark") {
+  switchTheme(true)
 }
+
+// const themeOverrides = ref<null | GlobalThemeOverrides>(null)
+
 
 </script>
 

@@ -2,7 +2,6 @@
 import {
   NPopover,
   NMenu,
-  NImage,
   NSwitch,
   NGrid,
   NGridItem,
@@ -11,7 +10,7 @@ import {
   NIcon,
   NButton,
 } from 'naive-ui'
-import AppMenuOptions from '../../common/appMenu'
+import AppMenuOptions from '../../ts/common/appMenu'
 import {LogInOutline} from "@vicons/ionicons5";
 
 
@@ -33,12 +32,6 @@ defineProps(['switchTheme'])
               style="height: inherit"
             cols="2 1000:7">
         <n-grid-item offset="0 1000:1" span="0 1000:1" class="grid-item">
-          <n-popover trigger="hover">
-            <template #trigger>
-              <n-image :preview-disabled="true" class="top-logo" src="src/assets/vue.svg"/>
-            </template>
-            <span>CN⚡5FW</span>
-          </n-popover>
         </n-grid-item>
         <n-grid-item class="grid-item" span="0 1000:3">
           <n-menu mode="horizontal" class="main-menu"
@@ -82,10 +75,5 @@ defineProps(['switchTheme'])
   left: 0;
   right: 0;
   z-index: 10;
-}
-@media (max-width: 999px) {
-  .top-logo {
-    display: none;
-  }
 }
 </style>

@@ -19,6 +19,6 @@
     "include": [
         "components/*",
         "app/*",
-        "common/*"
+        "ts/common/*"
     ]
 }

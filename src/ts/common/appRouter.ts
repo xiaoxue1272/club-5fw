@@ -1,4 +1,4 @@
-import {createRouter, createWebHashHistory, RouteRecordRaw} from "vue-router";
+import { createRouter, createWebHashHistory, RouteRecordRaw} from "vue-router";
 
 const routers: RouteRecordRaw[] = [
     {
@@ -7,13 +7,13 @@ const routers: RouteRecordRaw[] = [
     },
     {
         path: "/home",
-        component: () => import("../components/Home.vue"),
+        component: () => import("../../components/Home.vue"),
         name: "Club Home",
     },
     {
-        path: "/space",
-        component: () =>　import("../components/Home.vue"),
-        name: "Club Space",
+        path: "/live",
+        component: () =>　import("../../components/LiveHome.vue"),
+        name: "Club Live",
     },
 ]
 

@@ -1,0 +1,17 @@
+<svg width="366" height="366" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+ <g>
+  <title>background</title>
+  <rect fill="#ffffff00" id="canvas_background" height="368" width="368" y="-1" x="-1"/>
+  <g display="none" overflow="visible" id="canvasGrid">
+   <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%" width="100%"/>
+  </g>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <ellipse stroke="#000" ry="183" rx="183" id="svg_10" cy="183" cx="183" stroke-opacity="null" stroke-width="0" fill="#7599af"/>
+  <path stroke="#000" transform="rotate(0.01986822485923767 185.2163696289324,132.42761230471157) " id="svg_2" d="m114.994492,115.801931l53.645114,0l16.576753,-53.802452l16.576762,53.802452l53.645104,0l-43.399729,33.251364l16.577611,53.802452l-43.399748,-33.252269l-43.399739,33.252269l16.577615,-53.802452l-43.399743,-33.251364z" fill-opacity="null" stroke-opacity="null" stroke-width="20" fill="#fff"/>
+  <text stroke="#000" xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_3" y="275.109375" x="110.5" fill-opacity="null" stroke-opacity="null" stroke-width="0" fill="#000000"/>
+  <text font-weight="bold" xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="90" id="svg_12" y="308.109375" x="92.5" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">5FW</text>
+ </g>
+</svg>
