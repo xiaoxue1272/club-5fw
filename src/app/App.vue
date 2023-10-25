@@ -6,13 +6,17 @@ import {
 } from 'naive-ui'
 import dateZhCN from "naive-ui/es/locales/date/zhCN"
 import zhCN from 'naive-ui/es/locales/common/zhCN'
-import LayoutContent from "./layout/LayoutContent.vue";
+// import LayoutContent from "./layout/LayoutContent.vue";
 import {switchTheme, theme} from "../ts/common/basic"
-import LayoutHeader from "./layout/LayoutHeader.vue";
+// import LayoutHeader from "./layout/LayoutHeader.vue";
+import MainLayout from "./layout/MainLayout.vue";
+import {onMounted} from "vue";
 
-if (useOsTheme().value == "dark") {
-  switchTheme(true)
-}
+onMounted(() => {
+  if (useOsTheme().value == "dark") {
+    switchTheme(true)
+  }
+})
 
 // const themeOverrides = ref<null | GlobalThemeOverrides>(null)
 
@@ -22,17 +26,15 @@ if (useOsTheme().value == "dark") {
 <template>
   <n-config-provider :theme="theme" :date-locale="dateZhCN" :locale="zhCN">
     <n-global-style/>
-    <n-layout>
-      <layout-header :switch-theme="switchTheme"/>
-      <layout-content/>
-    </n-layout>
+<!--    <n-layout>-->
+<!--      <layout-header :switch-theme="switchTheme"/>-->
+<!--      <layout-content/>-->
+<!--    </n-layout>-->
+    <main-layout :switch-theme="switchTheme"/>
   </n-config-provider>
 </template>
 
 <style>
-.main-menu {
-  font-size: 20px;
-}
 .grid-item {
   margin: auto;
 }

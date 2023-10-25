@@ -1,20 +1,18 @@
-import { MenuOption } from "naive-ui";
-import { RouterLink } from "vue-router";
-import { h } from "vue";
+import {MenuOption} from "naive-ui";
+import {
+  Home as HomeIcon,
+  Videocam as VideocamIcon
+} from '@vicons/ionicons5'
+import {createRouterLink, renderIcon} from "./basic";
 
 
-function createRouterLink(path: string, content: string) {
-  return () => h(RouterLink, {
-    to: path
-  }, {default: () => content})
-}
 
 
 const appMenuOptions: MenuOption[] = [
   {
     disabled: false,
     key: "home",
-    icon: undefined,
+    icon: renderIcon(HomeIcon),
     label: createRouterLink('/home', 'HOME'),
     show: true
   },
@@ -61,7 +59,7 @@ const appMenuOptions: MenuOption[] = [
   {
     disabled: false,
     key: "live",
-    icon: undefined,
+    icon: renderIcon(VideocamIcon),
     label: createRouterLink('/live', 'LIVE'),
     show: true
   },

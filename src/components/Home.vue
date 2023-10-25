@@ -12,27 +12,30 @@ import {
 <template>
   <div>
 
-    <n-h1><b>CN 5FW</b></n-h1>
+    <div style="padding-top: 3%">
+      <n-h1><b>CN 5FW</b></n-h1>
+    </div>
+    <div style="padding-top: 3%">
+      <n-popover trigger="hover">
+        <template #trigger>
+          <n-image :preview-disabled="true" :show-toolbar="false" class="top-logo" src="/5fw.svg"/>
+        </template>
+        <span>CN 5FW</span>
+      </n-popover>
 
-    <n-popover trigger="hover">
-      <template #trigger>
-        <n-image :preview-disabled="true" class="top-logo" src="/5fw.svg"/>
-      </template>
-      <span>CN 5FW</span>
-    </n-popover>
+      <n-h2 style="padding-left: 30%; padding-right: 30%"><del>这里是什么都没有的首页</del></n-h2>
 
-    <n-h2><del>这里是什么都没有的首页</del></n-h2>
-
-    <n-h2>
-      <b>
-        5Fw Esports简称5Fw。是一家来自中国的电子游戏俱乐部，2020年组建。该俱乐部已涉足少女前线、碧蓝航线、明日方舟、彩虹六号围攻等多个游戏领域。
-      </b>
-    </n-h2>
-    <n-h3>
-      <b>
-        <del>Location: 青岛市残疾人体育中心</del>
-      </b>
-    </n-h3>
+      <n-h2 style="padding-left: 30%; padding-right: 30%">
+        <b>
+          5Fw Esports简称5Fw。是一家来自中国的电子游戏俱乐部，2020年组建。该俱乐部已涉足少女前线、碧蓝航线、明日方舟、彩虹六号围攻等多个游戏领域。
+        </b>
+      </n-h2>
+      <n-h3 style="padding-left: 30%; padding-right: 30%">
+        <b>
+          <del>Location: 青岛市残疾人体育中心</del>
+        </b>
+      </n-h3>
+    </div>
 
 <!--    <p>-->
 <!--      Check out-->
