@@ -32,7 +32,7 @@ const loginRules = ref<FormRules>({
               :rules="loginRules"
               :model="loginData"
               :show-label="false">
-        <h2>CN⚡5FW</h2>
+        <h2>CN 5FW</h2>
         <div class="form-item-layout">
           <n-form-item first path="account">
             <n-input round type="text" v-model:value="loginData.account" placeholder="账号"/>
