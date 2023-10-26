@@ -146,11 +146,12 @@ onUnmounted(() => {
       </n-card>
     </n-modal>
     <div id="liveRoomBasicDiv">
-      <div class="padding-width70-percent">
-        <div style="display: inline-block; float: left">
+      <div class="padding-width70">
+        <div>
           <n-h1 style="text-align: left" ><n-gradient-text type="success">{{ room }}的直播间</n-gradient-text></n-h1>
         </div>
-        <div style="display: inline-block; float: right">
+        <div></div>
+        <div>
           <n-button quaternary round type="primary" @click="roomInputModelShow = true"><b>换台</b></n-button>
         </div>
       </div>
@@ -162,8 +163,17 @@ onUnmounted(() => {
 <style scoped>
 .padding-width70-percent {
   width: 70%;
-  padding-left: 15%;
-  padding-right: 15%;
+  position: relative;
 }
-
+.padding-width70 {
+  width: 100%;
+  display: flex;
+}
+.padding-width70 :first-child{
+  width: 100%;
+  margin-left: 6%;
+}
+.padding-width70 :last-child{
+  margin-right: 15%;
+}
 </style>
