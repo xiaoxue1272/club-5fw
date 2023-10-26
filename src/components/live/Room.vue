@@ -16,7 +16,7 @@ let flvPlayer = null
 
 const roomInputRule = ref<FormItemRule>({
   required: true,
-  trigger: ["input", "blur", "focus"],
+  trigger: ["input", "blur"],
   validator() {
     if (roomInput.value == null || roomInput.value === "") {
       enterRoomButtonShow.value = false
@@ -111,7 +111,7 @@ onUnmounted(() => {
   <div>
     <n-modal
         v-model:closable="roomInputModelCloseable"
-        v-model::close-on-esc="roomInputModelCloseable"
+        v-model:close-on-esc="roomInputModelCloseable"
         v-model:mask-closable="roomInputModelCloseable"
         v-model:show="roomInputModelShow"
         block-scroll>

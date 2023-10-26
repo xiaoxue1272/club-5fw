@@ -1,6 +1,7 @@
 import {Component, h, ref} from "vue";
 import {darkTheme, GlobalTheme, NIcon} from "naive-ui";
 import {RouterLink} from "vue-router";
+import {AxiosResponse} from "axios";
 
 
 // router.beforeResolve()
@@ -25,9 +26,11 @@ export function renderIcon (icon: Component) {
     return () => h(NIcon, null, { default: () => h(icon) })
 }
 
-export function runPromiseCatching<T>(promise: Promise<T>, then?: ((value: T) => T | PromiseLike<T>) | undefined | null) {
-    return promise.then(then).catch((reason) => {
-        console.log(reason)
-        return null as T
-    })
+export function runPromiseCatching<T, R>(promise: Promise<T>, then?: ((value: T) => R | PromiseLike<R>) | undefined | null): Promise<R> {
+    return promise
+        .then(then)
+        .catch((reason) => {
+            console.log(reason)
+            return null as R
+        })
 }

@@ -4,8 +4,14 @@ import legacy from '@vitejs/plugin-legacy'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  publicDir: "public",
   base: "/club-5fw/",
+  publicDir: "public",
+  assetsInclude: [
+      "**/*.gif",
+      "**/*.jpg",
+      "**/*.jpeg",
+      "**/*.png"
+  ],
   plugins: [
     vue(),
     legacy({
