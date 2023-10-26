@@ -54,8 +54,6 @@ onMounted(() => {
   }
 }
 .global-result-page{
-  width: 100%;
-  height: 70%;
   padding-top: 15%;
   padding-bottom: 15%
 }

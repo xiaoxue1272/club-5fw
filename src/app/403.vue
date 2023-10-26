@@ -7,6 +7,7 @@ import {NResult} from "naive-ui";
   <n-result
       class="global-result-page"
       status="403"
+      size="huge"
       title="403 禁止访问"
       description="总有些门是对你关闭的"
   >

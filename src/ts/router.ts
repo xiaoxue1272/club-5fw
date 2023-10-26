@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw} from "vue-router";
 
+// @ts-ignore
 const routers: RouteRecordRaw[] = [
     {
         path: "/",
@@ -14,6 +15,11 @@ const routers: RouteRecordRaw[] = [
         path: "/403",
         component: () => import("../app/403.vue"),
         name: "403",
+    },
+    {
+        path: "/500",
+        component: () => import("../app/500.vue"),
+        name: "500",
     },
     {
         path: "/home",
@@ -33,7 +39,7 @@ const routers: RouteRecordRaw[] = [
             },
             {
                 path: "control",
-                component: () =>　import("../components/live/Control.vue"),
+                component: () => import("../components/live/Control.vue"),
                 name: "liveControl",
             },
             {
