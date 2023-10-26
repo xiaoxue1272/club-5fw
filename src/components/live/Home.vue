@@ -1,12 +1,12 @@
 <script setup lang="ts">
 
-import {NH1, NH2, NImage} from "naive-ui";
+import {NH1, NH2, NImage, NPopover} from "naive-ui";
 </script>
 
 
 /**
 * 查看在线状态 (谁在播 谁在看)
-* http://live.5fw.club:8090/stat/livestat
+* http://124.221.83.106:8090/stat/livestat
 */
 
 <template>
@@ -14,7 +14,12 @@ import {NH1, NH2, NImage} from "naive-ui";
 
   <n-image src="../../../public/live logo.jpg" width="400" :show-toolbar="false"></n-image>
 
-  <n-h2>啥? 你说你想看直播? 哦原来我也想啊, 那没事了</n-h2>
+  <n-popover  trigger="hover">
+    <template #trigger>
+      <n-h2>谁在播, 谁在看?</n-h2>
+    </template>
+    <n-h2>扌喿 亻乍 亻尔</n-h2>
+  </n-popover>
 </template>
 
 <style scoped>
