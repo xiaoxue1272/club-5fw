@@ -18,7 +18,7 @@ import {
     <div style="padding-top: 3%">
       <n-popover trigger="hover">
         <template #trigger>
-          <n-image :preview-disabled="true" :show-toolbar="false" class="top-logo" src="/club-5fw/5fw.svg"/>
+          <n-image :preview-disabled="true" :show-toolbar="false" class="top-logo" src="/5fw.svg"/>
         </template>
         <span>CN 5FW</span>
       </n-popover>

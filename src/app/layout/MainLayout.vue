@@ -32,7 +32,7 @@ defineProps(['switchTheme'])
       <n-grid collapsed
               cols="2 1000:7">
         <n-grid-item offset="0 1000:1" span="0 1000:1" class="grid-item">
-          <n-image :width="30" :height="30" :show-toolbar="false" src="/club-5fw/5fw.svg"></n-image>
+          <n-image :width="30" :height="30" :show-toolbar="false" src="/5fw.svg"></n-image>
         </n-grid-item>
         <n-grid-item class="grid-item" span="0 1000:3">
           <n-menu mode="horizontal" class="main-menu"
