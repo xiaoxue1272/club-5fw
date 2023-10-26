@@ -12,14 +12,14 @@ queryLiveStat().then((value) => {
 })
 
 
-async function queryLiveStat() : Promise<LiveStatRes> {
+async function queryLiveStat(): Promise<LiveStatRes> {
   return axios.get("http://124.221.83.106:8090/stat/livestat").then((res) => {
     if (res.status != 200) {
-      return null
+      return
     }
     let liveGoRes = (<LiveGoBasicRes<LiveStatRes>>res.data)
     if (liveGoRes.status != 200) {
-      return null
+      return
     }
     console.log(liveStat)
     return liveGoRes.data

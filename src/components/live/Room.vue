@@ -3,23 +3,22 @@
 import flvJs from "flv.js"
 import {onMounted, onUnmounted, ref} from "vue";
 import {NH1, NGradientText, NModal, NCard, NInput, NButton, FormItemRule, NFormItem} from "naive-ui";
-import {useRouter} from "vue-router";
 
+import { router } from "../../ts/router"
 
 const room = ref(localStorage.getItem("room"));
+const roomInput = ref(room.value)
 const roomInputModelShow = ref(room.value == null || room.value === "")
 const roomInputModelCloseable = ref(true)
 const enterRoomButtonShow = ref(false)
-
-const router = useRouter();
 
 let flvPlayer = null
 
 const roomInputRule = ref<FormItemRule>({
   required: true,
-  trigger: ['keydown', "change", "input", "blur", "focus"],
+  trigger: ["input", "blur", "focus"],
   validator() {
-    if (room.value == null || room.value === "") {
+    if (roomInput.value == null || roomInput.value === "") {
       enterRoomButtonShow.value = false
       return new Error("我怎么知道你要看谁?")
     } else {
@@ -29,18 +28,18 @@ const roomInputRule = ref<FormItemRule>({
 })
 
 function toLiveHome() {
-  console.log(router)
   router.push('/live/home')
 }
 
 function enterRoom() {
   roomInputModelShow.value = false
-  roomInputModelCloseable.value = room.value != null && room.value !== ""
+  roomInputModelCloseable.value = roomInput.value != null && roomInput.value !== ""
   console.log('roomInputModelCloseable', roomInputModelCloseable.value, 'roomInputModelShow', roomInputModelShow.value)
-  localStorage.setItem("room", room.value)
+  room.value = roomInput.value
+  localStorage.setItem("room", roomInput.value)
   destroyVideoPlayer()
-  initVideoPlayer(room.value)
-  document.getElementById("liveRoomBasicDiv").style.display = null
+  initVideoPlayer(roomInput.value)
+  document.getElementById("liveRoomBasicDiv").style.display = ""
 }
 
 function initVideoPlayer(room: String) {
@@ -66,6 +65,9 @@ function destroyVideoPlayer() {
 }
 
 onMounted(() => {
+  room.value = localStorage.getItem("room")
+  roomInput.value = localStorage.getItem("room")
+  roomInputModelShow.value = room.value == null || room.value === ""
   console.log('roomInputModelCloseable', roomInputModelCloseable.value, 'roomInputModelShow', roomInputModelShow.value)
   if (room.value == null || room.value === "") {
     roomInputModelShow.value = true
@@ -127,7 +129,7 @@ onUnmounted(() => {
           </n-gradient-text>
         </template>
         <n-form-item :rule="roomInputRule">
-          <n-input bordered clearable round placeholder="房间号" v-model:value="room" />
+          <n-input bordered clearable round placeholder="房间号" v-model:value="roomInput" />
         </n-form-item>
         <template #footer>
           <div>

@@ -2,8 +2,8 @@ import { createApp } from 'vue'
 import './style.css'
 import App from './app/App.vue'
 import 'vfonts/Lato.css'
-import {appRouter}  from "./ts/common/appRouter";
+import {router}  from "./ts/router";
 
 let app = createApp(App)
-.use(appRouter);
+.use(router);
 app.mount('#app')

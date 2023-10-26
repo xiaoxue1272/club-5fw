@@ -14,7 +14,7 @@ import {
   NImage,
   NLayoutFooter,
 } from 'naive-ui'
-import AppMenuOptions from '../../ts/common/appMenu'
+import AppMenuOptions from '../../ts/common/menu'
 import {LogInOutline} from "@vicons/ionicons5";
 import { ref } from "vue";
 import Login from "../login/login.vue";

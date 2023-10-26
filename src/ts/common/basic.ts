@@ -3,6 +3,8 @@ import {darkTheme, GlobalTheme, NIcon} from "naive-ui";
 import {RouterLink} from "vue-router";
 
 
+// router.beforeResolve()
+
 export const theme = ref<null | GlobalTheme>(null)
 
 export function switchTheme(flag: boolean) {

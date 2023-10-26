@@ -6,9 +6,7 @@ import {
 import {createRouterLink, renderIcon} from "./basic";
 
 
-
-
-const appMenuOptions: MenuOption[] = [
+const menuOptions: MenuOption[] = [
   {
     disabled: false,
     key: "home",
@@ -65,4 +63,5 @@ const appMenuOptions: MenuOption[] = [
   },
 ]
 
-export default appMenuOptions
+
+export default menuOptions
