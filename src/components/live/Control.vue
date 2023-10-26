@@ -10,7 +10,9 @@
 */
 
 <template>
-  <h1>control</h1>
+  <div>
+    <h1>control</h1>
+  </div>
 </template>
 
 <style scoped>

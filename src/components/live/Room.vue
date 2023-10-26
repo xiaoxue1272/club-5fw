@@ -1,24 +1,83 @@
 <script setup lang="ts">
 
 import flvJs from "flv.js"
-import {onMounted} from "vue";
+import {onMounted, onUnmounted, ref} from "vue";
+import {NH1, NGradientText, NModal, NCard, NInput, NButton, FormItemRule, NFormItem} from "naive-ui";
+import {useRouter} from "vue-router";
 
 
-onMounted(() => {
+const room = ref(localStorage.getItem("room"));
+const roomInputModelShow = ref(room.value == null || room.value === "")
+const roomInputModelCloseable = ref(true)
+const enterRoomButtonShow = ref(false)
+
+const router = useRouter();
+
+let flvPlayer = null
+
+const roomInputRule = ref<FormItemRule>({
+  required: true,
+  trigger: ['keydown', "change", "input", "blur", "focus"],
+  validator() {
+    if (room.value == null || room.value === "") {
+      enterRoomButtonShow.value = false
+      return new Error("我怎么知道你要看谁?")
+    } else {
+      enterRoomButtonShow.value = true
+    }
+  }
+})
+
+function toLiveHome() {
+  console.log(router)
+  router.push('/live/home')
+}
+
+function enterRoom() {
+  roomInputModelShow.value = false
+  roomInputModelCloseable.value = room.value != null && room.value !== ""
+  console.log('roomInputModelCloseable', roomInputModelCloseable.value, 'roomInputModelShow', roomInputModelShow.value)
+  localStorage.setItem("room", room.value)
+  destroyVideoPlayer()
+  initVideoPlayer(room.value)
+  document.getElementById("liveRoomBasicDiv").style.display = null
+}
+
+function initVideoPlayer(room: String) {
   let livePlayer = document.getElementById("livePlayer");
   if (!flvJs.isSupported()) {
     livePlayer.style.display = "none"
   }
-
   console.log(livePlayer)
-  let flvPlayer =  flvJs.createPlayer({
+  flvPlayer = flvJs.createPlayer({
     type: 'flv',
     cors: true,
-    url: 'http://124.221.83.106:7001/live/' + "参数" +'.flv'
+    url: 'http://124.221.83.106:7001/live/' + room +'.flv'
   });
   flvPlayer.attachMediaElement(<HTMLMediaElement>livePlayer)
   flvPlayer.load()
   flvPlayer.play()
+}
+
+function destroyVideoPlayer() {
+  if (flvPlayer != null) {
+    flvPlayer.destroy()
+  }
+}
+
+onMounted(() => {
+  console.log('roomInputModelCloseable', roomInputModelCloseable.value, 'roomInputModelShow', roomInputModelShow.value)
+  if (room.value == null || room.value === "") {
+    roomInputModelShow.value = true
+    roomInputModelCloseable.value = false
+    document.getElementById("liveRoomBasicDiv").style.display = "none"
+    return
+  }
+  initVideoPlayer(room.value)
+})
+
+onUnmounted(() => {
+  destroyVideoPlayer()
 })
 
 // export default {
@@ -41,17 +100,68 @@ onMounted(() => {
 
 </script>
 
-
 /**
 * 直播流
 * http://124.221.83.106:7001/live/[参数,就是 Control里的room=的那个].flv
 */
 
 <template>
-  <h1>room</h1>
-  <video id="livePlayer" controls autoplay/>
+  <div>
+    <n-modal
+        v-model:closable="roomInputModelCloseable"
+        v-model::close-on-esc="roomInputModelCloseable"
+        v-model:mask-closable="roomInputModelCloseable"
+        v-model:show="roomInputModelShow"
+        block-scroll>
+      <n-card class="model-inner-card"
+          :bordered="true"
+          size="huge"
+          role="dialog"
+          aria-modal="true"
+      >
+        <template #header>
+          <n-gradient-text type="info">
+            <b>
+              请输入房间号
+            </b>
+          </n-gradient-text>
+        </template>
+        <n-form-item :rule="roomInputRule">
+          <n-input bordered clearable round placeholder="房间号" v-model:value="room" />
+        </n-form-item>
+        <template #footer>
+          <div>
+            <n-button strong secondary round v-show="enterRoomButtonShow" type="info" :on-click="enterRoom">
+              进入房间
+            </n-button>
+          </div>
+          <div style="padding-top: 5%">
+            <n-button strong secondary round type="success" :on-click="toLiveHome">
+              回到Live Home
+            </n-button>
+          </div>
+        </template>
+      </n-card>
+    </n-modal>
+    <div id="liveRoomBasicDiv">
+      <div class="padding-width70-percent">
+        <div style="display: inline-block; float: left">
+          <n-h1 style="text-align: left" ><n-gradient-text type="success">{{ room }}的直播间</n-gradient-text></n-h1>
+        </div>
+        <div style="display: inline-block; float: right">
+          <n-button quaternary round type="primary" @click="roomInputModelShow = true"><b>换台</b></n-button>
+        </div>
+      </div>
+      <video id="livePlayer" class="padding-width70-percent" controls autoplay/>
+    </div>
+  </div>
 </template>
 
 <style scoped>
+.padding-width70-percent {
+  width: 70%;
+  padding-left: 15%;
+  padding-right: 15%;
+}
 
 </style>

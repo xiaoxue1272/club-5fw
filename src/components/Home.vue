@@ -23,7 +23,7 @@ import {
         <span>CN 5FW</span>
       </n-popover>
 
-      <n-h2 style="padding-left: 30%; padding-right: 30%"><del>这里是什么都没有的首页</del></n-h2>
+<!--      <n-h2 style="padding-left: 30%; padding-right: 30%"><del>这里是什么都没有的首页</del></n-h2>-->
 
       <n-h2 style="padding-left: 30%; padding-right: 30%">
         <b>

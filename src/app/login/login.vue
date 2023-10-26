@@ -27,7 +27,7 @@ const loginRules = ref<FormRules>({
   <n-modal auto-focus
            close-on-esc
            :block-scroll="false">
-    <n-card class="login-card" :bordered="true">
+    <n-card class="model-inner-card" :bordered="true">
       <n-form size="medium"
               :rules="loginRules"
               :model="loginData"
@@ -52,21 +52,6 @@ const loginRules = ref<FormRules>({
 </template>
 
 <style scoped>
-.login-card {
-  padding: 0 30px 30px;
-  text-align: center;
-  width: 20%;
-}
-@media(max-width: 1000px) {
-  .login-card {
-    width: 50%;
-  }
-}
-@media(max-width: 400px) {
-  .login-card {
-    width: 100%;
-  }
-}
 
 .form-item-layout {
   text-align: initial;

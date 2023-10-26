@@ -38,4 +38,19 @@ onMounted(() => {
 .grid-item {
   margin: auto;
 }
+.model-inner-card {
+  padding: 0 30px 30px;
+  text-align: center;
+  width: 20%;
+}
+@media(max-width: 1100px) {
+  .model-inner-card {
+    width: 50%;
+  }
+}
+@media(max-width: 450px) {
+  .model-inner-card {
+    width: 100%;
+  }
+}
 </style>

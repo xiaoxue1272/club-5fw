@@ -8,28 +8,28 @@ const routers: RouteRecordRaw[] = [
     {
         path: "/home",
         component: () => import("../../components/Home.vue"),
-        name: "club home",
+        name: "home",
     },
     {
         path: "/live",
         component: () =>　import("../../components/Live.vue"),
-        name: "club live",
+        name: "live",
         redirect:"/live/home",
         children: [
             {
                 path: "home",
                 component: () =>　import("../../components/live/Home.vue"),
-                name: "live home",
+                name: "liveHome",
             },
             {
                 path: "control",
                 component: () =>　import("../../components/live/Control.vue"),
-                name: "live control",
+                name: "liveControl",
             },
             {
                 path: "room",
                 component: () =>　import("../../components/live/Room.vue"),
-                name: "live room",
+                name: "liveRoom",
             }
         ]
     },

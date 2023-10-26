@@ -1,6 +1,50 @@
 <script setup lang="ts">
+import {NH1, NH2, NH3, NImage, NPopover, NCollapse, NCollapseItem, NList, NListItem, NGradientText, NCard, NIcon, NText} from "naive-ui";
+import { ArrowForward as ArrowRightIcon} from "@vicons/ionicons5"
+import axios from "axios";
+import {LiveGoBasicRes, LiveStatRes} from "../../ts/components/liveBasic";
+import {ref} from "vue";
 
-import {NH1, NH2, NImage, NPopover} from "naive-ui";
+const liveStat = ref<LiveStatRes>()
+
+queryLiveStat().then((value) => {
+  liveStat.value = value
+})
+
+
+async function queryLiveStat() : Promise<LiveStatRes> {
+  return axios.get("http://124.221.83.106:8090/stat/livestat").then((res) => {
+    if (res.status != 200) {
+      return null
+    }
+    let liveGoRes = (<LiveGoBasicRes<LiveStatRes>>res.data)
+    if (liveGoRes.status != 200) {
+      return null
+    }
+    console.log(liveStat)
+    return liveGoRes.data
+  })
+}
+
+// or
+// axios.get("http://124.221.83.106:8090/stat/livestat").then((res) => {
+//   if (res.status != 200) {
+//     return
+//   }
+//   let liveGoRes = (<LiveGoBasicRes<LiveStatRes>>res.data)
+//   if (liveGoRes.status != 200) {
+//     return
+//   }
+//   liveStat.value = liveGoRes.data
+//   console.log(liveStat)
+// })
+
+
+function cacheRoom(room) {
+  localStorage.setItem('room', room)
+}
+
+
 </script>
 
 
@@ -10,16 +54,47 @@ import {NH1, NH2, NImage, NPopover} from "naive-ui";
 */
 
 <template>
-  <n-h1>Live Home</n-h1>
+  <div>
+    <n-h1>Live Home</n-h1>
 
-  <n-image src="../../../public/live logo.jpg" width="400" :show-toolbar="false"></n-image>
+    <n-image src="../../../public/live logo.jpg" width="400" :show-toolbar="false"></n-image>
 
-  <n-popover  trigger="hover">
-    <template #trigger>
-      <n-h2>谁在播, 谁在看?</n-h2>
-    </template>
-    <n-h2>扌喿 亻乍 亻尔</n-h2>
-  </n-popover>
+    <n-popover  trigger="hover">
+      <template #trigger>
+        <n-h2>谁在播, 谁在看?</n-h2>
+      </template>
+      <n-h2>扌喿 亻乍 亻尔</n-h2>
+    </n-popover>
+    <div style="padding-bottom: 10%">
+      <n-card bordered style="width: 50%; margin: auto;">
+        <n-collapse>
+          <n-collapse-item>
+            <template #header>
+              <n-h3 style="margin: auto">
+                <n-gradient-text type="primary">
+                  <b>
+                    当前直播列表
+                  </b>
+                </n-gradient-text>
+              </n-h3>
+            </template>
+            <template #arrow>
+              <n-icon><ArrowRightIcon/></n-icon>
+            </template>
+            <n-list bordered hoverable clickable>
+              <router-link to="/live/room" v-for="publisher in liveStat.publishers" @click="cacheRoom(publisher.key.split('/')[1])">
+                <n-list-item>
+                  <n-text strong>
+                    <b>{{publisher.key.split("/")[1]}}</b>
+                  </n-text>
+                </n-list-item>
+              </router-link>
+            </n-list>
+          </n-collapse-item>
+        </n-collapse>
+      </n-card>
+    </div>
+  </div>
 </template>
 
 <style scoped>

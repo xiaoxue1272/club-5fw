@@ -24,7 +24,6 @@ const collapsed = ref(true)
 
 defineProps(['switchTheme'])
 
-
 </script>
 
 <template>
@@ -105,6 +104,9 @@ defineProps(['switchTheme'])
     <div v-if="!collapsed" class="main-mask" @click="collapsed = true"/>
     <n-scrollbar trigger="hover" style="height: 90%;">
       <router-view #="{ Component }">
+<!--        <keep-alive exclude="live">-->
+<!--          -->
+<!--        </keep-alive>-->
         <transition name="view" mode="out-in">
           <component :is="Component"/>
         </transition>
