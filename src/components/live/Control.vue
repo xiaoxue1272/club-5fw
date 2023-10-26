@@ -48,7 +48,8 @@ function showModalMove() {
 
 <template>
   <div>
-    <h1>control</h1>
+    <h1>直播管理</h1>
+    <h2>你觉得简陋是因为我压根没时间做这个页面</h2>
     <div>
       <n-button @click="showModalTrue">开播</n-button>
     </div>

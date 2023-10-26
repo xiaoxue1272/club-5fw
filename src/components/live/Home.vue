@@ -61,7 +61,7 @@ function cacheRoom(room) {
   <div>
     <n-h1>Live Home</n-h1>
 
-    <n-image src="../../../public/live logo.jpg" width="400" :show-toolbar="false"></n-image>
+    <n-image src="/live logo.jpg" width="400" :show-toolbar="false"></n-image>
 
     <n-popover  trigger="hover">
       <template #trigger>
