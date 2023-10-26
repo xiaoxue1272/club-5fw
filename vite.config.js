@@ -4,7 +4,7 @@ import legacy from '@vitejs/plugin-legacy'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "/club-5fw/"
+  base: "/club-5fw/",
   plugins: [
     vue(),
     legacy({
