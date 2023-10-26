@@ -4,6 +4,7 @@ import { ArrowForward as ArrowRightIcon} from "@vicons/ionicons5"
 import axios from "axios";
 import {LiveGoBasicRes, LiveStatRes} from "../../ts/components/liveBasic";
 import {ref} from "vue";
+import {runPromiseCatching} from "../../ts/common/basic";
 
 const liveStat = ref<LiveStatRes>()
 
@@ -13,17 +14,20 @@ queryLiveStat().then((value) => {
 
 
 async function queryLiveStat(): Promise<LiveStatRes> {
-  return axios.get("http://124.221.83.106:8090/stat/livestat").then((res) => {
-    if (res.status != 200) {
-      return
-    }
-    let liveGoRes = (<LiveGoBasicRes<LiveStatRes>>res.data)
-    if (liveGoRes.status != 200) {
-      return
-    }
-    console.log(liveStat)
-    return liveGoRes.data
-  })
+  return runPromiseCatching(
+      axios.get("http://124.221.83.106:8090/stat/livestat"),
+      (res) => {
+        if (res.status != 200) {
+          return
+        }
+        let liveGoRes = (<LiveGoBasicRes<LiveStatRes>>res.data)
+        if (liveGoRes.status != 200) {
+          return
+        }
+        console.log(liveStat)
+        return liveGoRes.data
+      }
+  )
 }
 
 // or
