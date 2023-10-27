@@ -15,7 +15,7 @@ queryLiveStat().then((value) => {
 
 async function queryLiveStat(): Promise<LiveStatRes> {
   return runPromiseCatching(
-      axios.get("http://124.221.83.106:8090/stat/livestat"),
+      axios.get("https://live.5fw.club:8090/stat/livestat"),
       (res) => {
         if (res.status != 200) {
           return
@@ -31,7 +31,7 @@ async function queryLiveStat(): Promise<LiveStatRes> {
 }
 
 // or
-// axios.get("http://124.221.83.106:8090/stat/livestat").then((res) => {
+// axios.get("https://live.5fw.club:8090/stat/livestat").then((res) => {
 //   if (res.status != 200) {
 //     return
 //   }
@@ -54,7 +54,7 @@ function cacheRoom(room) {
 
 /**
 * 查看在线状态 (谁在播 谁在看)
-* http://124.221.83.106:8090/stat/livestat
+* https://live.5fw.club:8090/stat/livestat
 */
 
 <template>

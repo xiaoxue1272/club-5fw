@@ -25,7 +25,7 @@ const roomInputRule = ref({
 
 function getLiveRoomSecretKey() {
   runPromiseCatching(
-      axios.get("http://124.221.83.106:8090/control/get?room=" + roomInput.value),
+      axios.get("https://live.5fw.club:8090/control/get?room=" + roomInput.value),
       (res) => {
         if (res.status != 200) {
           return
@@ -43,9 +43,9 @@ function getLiveRoomSecretKey() {
 
 /**
 * 获取推流密钥 (开播)
-* http://124.221.83.106:8090/control/get?room=参数
+* https://live.5fw.club:8090/control/get?room=参数
 * 下播 (这个目前不用写)
-* http://124.221.83.106:8090/control/delete?room=参数
+* https://live.5fw.club:8090/control/delete?room=参数
 */
 
 <template>
@@ -90,11 +90,4 @@ function getLiveRoomSecretKey() {
 </template>
 
 <style scoped>
-.but {
-  width: 100%;
-  display: flex;
-}
-.but div {
-  flex: 1;
-}
 </style>

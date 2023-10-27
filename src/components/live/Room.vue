@@ -51,7 +51,7 @@ function initVideoPlayer(room: String) {
   flvPlayer = flvJs.createPlayer({
     type: 'flv',
     cors: true,
-    url: 'http://124.221.83.106:7001/live/' + room +'.flv'
+    url: 'https://live.5fw.club:7001/live/' + room +'.flv'
   });
   flvPlayer.attachMediaElement(<HTMLMediaElement>livePlayer)
   flvPlayer.load()
@@ -92,7 +92,7 @@ onUnmounted(() => {
 //     let flvPlayer =  flvJs.createPlayer({
 //       type: 'flv',
 //       cors: true,
-//       url: 'http://live.5fw.club:7001/live/tiangou.flv'
+//       url: 'https://live.5fw.club:7001/live/tiangou.flv'
 //     });
 //     flvPlayer.attachMediaElement(<HTMLMediaElement>livePlayer)
 //     flvPlayer.load()
@@ -104,7 +104,7 @@ onUnmounted(() => {
 
 /**
 * 直播流
-* http://124.221.83.106:7001/live/[参数,就是 Control里的room=的那个].flv
+* https://live.5fw.club:7001/live/[参数,就是 Control里的room=的那个].flv
 */
 
 <template>
