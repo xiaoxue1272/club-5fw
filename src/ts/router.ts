@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw} from "vue-router";
 
 import { createDiscreteApi } from 'naive-ui'
+import {closeSpin, showSpin} from "./common/basic";
 const { loadingBar } = createDiscreteApi(['loadingBar'])
 const { notification } = createDiscreteApi(['notification'])
 
@@ -61,12 +62,14 @@ export const router = createRouter({
 
 router.beforeEach( async (to) => {
     loadingBar.start()
+    showSpin()
     if (!router.hasRoute((<string>to.name))) {
         await router.push({path: "/404"})
     }
 })
 
 router.afterEach( async (to, from, failure) => {
+    closeSpin()
     if (failure != undefined && to.path !== from.path) {
         loadingBar.error();
         notification.warning({
@@ -78,6 +81,7 @@ router.afterEach( async (to, from, failure) => {
         })
         console.log(failure.message)
         console.log(failure.stack)
+        return
     }
     loadingBar.finish()
 })

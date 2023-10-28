@@ -33,7 +33,7 @@ onMounted(() => {
       <!--      <layout-header :switch-theme="switchTheme"/>-->
       <!--      <layout-content/>-->
       <!--    </n-layout>-->
-      <main-layout :switch-theme="switchTheme"/>
+      <main-layout/>
     </n-config-provider>
   </n-loading-bar-provider>
 </template>

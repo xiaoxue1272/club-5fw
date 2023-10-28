@@ -6,6 +6,17 @@ import {RouterLink} from "vue-router";
 
 export const theme = ref<null | GlobalTheme>(null)
 
+export const IsSpinShow = ref(false)
+
+export function showSpin() {
+    IsSpinShow.value = true
+}
+
+export function closeSpin() {
+    IsSpinShow.value = false
+}
+
+
 export function switchTheme(flag: boolean) {
     if (flag) {
         theme.value = darkTheme
