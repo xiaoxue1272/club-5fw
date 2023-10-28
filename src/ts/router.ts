@@ -3,7 +3,6 @@ import { createRouter, createWebHashHistory, RouteRecordRaw} from "vue-router";
 import { createDiscreteApi } from 'naive-ui'
 import {closeSpin, showSpin} from "./common/basic";
 const { loadingBar } = createDiscreteApi(['loadingBar'])
-const { notification } = createDiscreteApi(['notification'])
 
 const routers: RouteRecordRaw[] = [
     {
@@ -60,28 +59,20 @@ export const router = createRouter({
     routes: routers
 })
 
-router.beforeEach( async (to) => {
+router.beforeEach( async (to, _from) => {
     loadingBar.start()
     showSpin()
     if (!router.hasRoute((<string>to.name))) {
-        await router.push({path: "/404"})
+        await router.push("/404")
     }
 })
 
-router.afterEach( async (to, from, failure) => {
+router.onError(async (error) => {
+    console.log(error)
+    await router.push("/500")
+})
+
+router.afterEach( async () => {
     closeSpin()
-    if (failure != undefined && to.path !== from.path) {
-        loadingBar.error();
-        notification.warning({
-            closable: true,
-            keepAliveOnHover: true,
-            content: failure.message,
-            meta: "可能你家网太垃圾了,是不是还跟我犟嘴了?",
-            duration: 2500,
-        })
-        console.log(failure.message)
-        console.log(failure.stack)
-        return
-    }
     loadingBar.finish()
 })
