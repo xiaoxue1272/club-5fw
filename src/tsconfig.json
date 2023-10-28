@@ -11,15 +11,16 @@
         "strictNullChecks": true,
         "allowJs": true,
         "skipLibCheck": true,
-        "lib": ["ES6", "dom"],
+        "lib": ["ES6", "dom", "ES2022"],
         "strict": false
     },
     "exclude": [
         "node_modules"
     ],
     "include": [
-        "components/*",
-        "app/*",
-        "ts/*"
+        "/*.ts",
+        "components/**/*.*",
+        "app/**/*.*",
+        "ts/**/*.ts"
     ]
 }
