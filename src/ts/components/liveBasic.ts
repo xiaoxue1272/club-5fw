@@ -1,10 +1,6 @@
 export class LiveGoBasicRes<T extends any> {
     status: number
     data: T;
-} {
-
-
-
 }
 
 export class LiveStatRes {

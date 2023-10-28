@@ -4,9 +4,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --port 5623 --host",
-    "build": "vite build",
-    "preview": "vite preview"
+    "dev default": "vite --port 5623 --host --mode default",
+    "dev suffix": "vite --port 5623 --host --mode suffix",
+    "build default": "vite build --mode default",
+    "build suffix": "vite build --mode suffix",
+    "preview default": "vite build --mode default & vite preview --mode default",
+    "preview suffix": "vite build --mode suffix & vite preview --mode suffix"
   },
   "dependencies": {
     "axios": "^1.5.1",

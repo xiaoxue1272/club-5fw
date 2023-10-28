@@ -47,7 +47,6 @@ function initVideoPlayer(room: String) {
   if (!flvJs.isSupported()) {
     livePlayer.style.display = "none"
   }
-  console.log(livePlayer)
   flvPlayer = flvJs.createPlayer({
     type: 'flv',
     cors: true,

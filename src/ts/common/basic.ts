@@ -1,8 +1,6 @@
 import {Component, h, ref} from "vue";
 import {darkTheme, GlobalTheme, NIcon} from "naive-ui";
 import {RouterLink} from "vue-router";
-import {AxiosResponse} from "axios";
-
 
 // router.beforeResolve()
 
@@ -14,6 +12,19 @@ export function switchTheme(flag: boolean) {
     } else {
         theme.value = null
     }
+}
+
+
+
+export function resolveStaticPath(path: string): string {
+    const BASE_URL: string = import.meta.env.BASE_URL
+    if (BASE_URL.charAt(BASE_URL.length - 1) === '/') {
+        path = path.charAt(0) === '/' ? path.slice(1, path.length - 1) : path
+    } else {
+        path = path.charAt(0) === '/' ? path : '/' + path
+    }
+    console.log(BASE_URL + path)
+    return BASE_URL + path
 }
 
 export function createRouterLink(path: string, content: string) {

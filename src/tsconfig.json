@@ -4,14 +4,15 @@
         "target": "ES6",
         "removeComments": true,
         "sourceMap": true,
-        "alwaysStrict": true,
+        "alwaysStrict": false,
         "forceConsistentCasingInFileNames": true,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
         "strictNullChecks": true,
         "allowJs": true,
         "skipLibCheck": true,
-        "lib": ["ES6", "dom"]
+        "lib": ["ES6", "dom"],
+        "strict": false
     },
     "exclude": [
         "node_modules"

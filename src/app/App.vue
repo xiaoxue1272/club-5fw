@@ -16,6 +16,7 @@ onMounted(() => {
   if (useOsTheme().value == "dark") {
     switchTheme(true)
   }
+  console.log(import.meta.env)
 })
 
 // const themeOverrides = ref<null | GlobalThemeOverrides>(null)

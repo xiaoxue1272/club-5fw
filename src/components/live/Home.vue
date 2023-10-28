@@ -4,7 +4,7 @@ import { ArrowForward as ArrowRightIcon} from "@vicons/ionicons5"
 import axios from "axios";
 import {LiveGoBasicRes, LiveStatRes} from "../../ts/components/liveBasic";
 import {ref} from "vue";
-import {runPromiseCatching} from "../../ts/common/basic";
+import {resolveStaticPath, runPromiseCatching} from "../../ts/common/basic";
 
 const liveStat = ref<LiveStatRes>()
 
@@ -24,7 +24,6 @@ async function queryLiveStat(): Promise<LiveStatRes> {
         if (liveGoRes.status != 200) {
           return
         }
-        console.log(liveStat)
         return liveGoRes.data
       }
   )
@@ -61,7 +60,7 @@ function cacheRoom(room) {
   <div>
     <n-h1>Live Home</n-h1>
 
-    <n-image src="/live logo.jpg" width="400" :show-toolbar="false"></n-image>
+    <n-image :src="resolveStaticPath('live logo.jpg')" width="400" :show-toolbar="false"></n-image>
 
     <n-popover  trigger="hover">
       <template #trigger>
