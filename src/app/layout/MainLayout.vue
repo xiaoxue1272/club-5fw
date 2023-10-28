@@ -16,7 +16,7 @@ import {
 } from 'naive-ui'
 import AppMenuOptions from '../../ts/common/menu'
 import {LogInOutline} from "@vicons/ionicons5";
-import { ref } from "vue";
+import {ref} from "vue";
 import Login from "../login/login.vue";
 import {resolveStaticPath} from "../../ts/common/basic";
 
@@ -103,16 +103,16 @@ defineProps(['switchTheme'])
       </n-layout-sider>
     </n-layout>
     <div v-if="!collapsed" class="main-mask" @click="collapsed = true"/>
-    <n-scrollbar trigger="hover" style="height: 90%;">
-      <router-view #="{ Component }">
-<!--        <keep-alive exclude="live">-->
-<!--          -->
-<!--        </keep-alive>-->
-        <transition name="view" mode="out-in">
-          <component :is="Component"/>
-        </transition>
-      </router-view>
-    </n-scrollbar>
+    <n-scrollbar ref="loadingBarTarget" trigger="hover" style="height: 90%;">
+        <router-view #="{ Component }">
+          <!--        <keep-alive exclude="live">-->
+          <!--          -->
+          <!--        </keep-alive>-->
+          <transition name="view" mode="out-in">
+            <component :is="Component"/>
+          </transition>
+        </router-view>
+      </n-scrollbar>
     <n-layout-footer style="position: fixed; width: 100%; bottom: 0" bordered>
       <h3>This Web Site Build By Vue3 + Vite + Naive UI, And Provided by 5FW.Club.IT(xuanzikong, tiangou)</h3>
     </n-layout-footer>

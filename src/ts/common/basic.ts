@@ -23,7 +23,6 @@ export function resolveStaticPath(path: string): string {
     } else {
         path = path.charAt(0) === '/' ? path : '/' + path
     }
-    console.log(BASE_URL + path)
     return BASE_URL + path
 }
 

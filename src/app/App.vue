@@ -2,6 +2,7 @@
 import {
   NConfigProvider,
   NGlobalStyle,
+  NLoadingBarProvider,
   useOsTheme,
 } from 'naive-ui'
 import dateZhCN from "naive-ui/es/locales/date/zhCN"
@@ -12,11 +13,11 @@ import {switchTheme, theme} from "../ts/common/basic"
 import MainLayout from "./layout/MainLayout.vue";
 import {onMounted} from "vue";
 
+
 onMounted(() => {
   if (useOsTheme().value == "dark") {
     switchTheme(true)
   }
-  console.log(import.meta.env)
 })
 
 // const themeOverrides = ref<null | GlobalThemeOverrides>(null)
@@ -25,14 +26,16 @@ onMounted(() => {
 </script>
 
 <template>
-  <n-config-provider :theme="theme" :date-locale="dateZhCN" :locale="zhCN">
-    <n-global-style/>
-<!--    <n-layout>-->
-<!--      <layout-header :switch-theme="switchTheme"/>-->
-<!--      <layout-content/>-->
-<!--    </n-layout>-->
-    <main-layout :switch-theme="switchTheme"/>
-  </n-config-provider>
+  <n-loading-bar-provider>
+    <n-config-provider :theme="theme" :date-locale="dateZhCN" :locale="zhCN">
+      <n-global-style/>
+      <!--    <n-layout>-->
+      <!--      <layout-header :switch-theme="switchTheme"/>-->
+      <!--      <layout-content/>-->
+      <!--    </n-layout>-->
+      <main-layout :switch-theme="switchTheme"/>
+    </n-config-provider>
+  </n-loading-bar-provider>
 </template>
 
 <style>
