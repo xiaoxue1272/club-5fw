@@ -27,6 +27,15 @@ const collapsed = ref(true)
 
 <template>
   <div>
+    <n-spin size="large" style="width: 100%; height: 100%;" :show="IsSpinShow">
+      <template #description>
+        <n-h2>
+          <b>
+            我知道你很急,但你先别急
+          </b>
+        </n-h2>
+      </template>
+    </n-spin>
     <n-layout class="view-leave-active" :style="{opacity: IsSpinShow ? 0 : 100}" position="absolute">
       <n-layout-header bordered>
         <n-grid collapsed
@@ -116,15 +125,6 @@ const collapsed = ref(true)
         <h3>This Web Site Build By Vue3 + Vite + Naive UI, And Provided by 5FW.Club.IT(xuanzikong, tiangou)</h3>
       </n-layout-footer>
     </n-layout>
-    <n-spin size="large" style="width: 100%; height: 100%;" :show="IsSpinShow">
-      <template #description>
-        <n-h2>
-          <b>
-            我知道你很急,但你先别急
-          </b>
-        </n-h2>
-      </template>
-    </n-spin>
   </div>
 </template>
 
