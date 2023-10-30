@@ -26,7 +26,96 @@ const collapsed = ref(true)
 </script>
 
 <template>
-  <n-layout position="absolute">
+  <div>
+    <n-layout class="view-leave-active" :style="{opacity: IsSpinShow ? 0 : 100}" position="absolute">
+      <n-layout-header bordered>
+        <n-grid collapsed
+                cols="2 1000:7">
+          <n-grid-item offset="0 1000:1" span="0 1000:1" class="grid-item">
+            <n-image :width="30" :height="30" :show-toolbar="false" :src="resolveStaticPath('5fw.svg')"></n-image>
+          </n-grid-item>
+          <n-grid-item class="grid-item" span="0 1000:3">
+            <n-menu mode="horizontal" class="main-menu"
+                    dropdown-placement="top"
+                    :options="AppMenuOptions"/>
+          </n-grid-item>
+          <n-grid-item class="grid-item">
+            <n-switch @update:value="switchTheme">
+              <template #unchecked>
+                🌙
+              </template>
+              <template #checked>
+                ☀️
+              </template>
+            </n-switch>
+          </n-grid-item>
+          <n-grid-item class="grid-item">
+            <n-popover trigger="hover">
+              <template #trigger>
+                <n-button round style="vertical-align: middle"
+                          :bordered="false"
+                          @click="showLoginModal = true">
+                  <n-icon size="30">
+                    <log-in-outline/>
+                  </n-icon>
+                </n-button>
+              </template>
+              <span>登录</span>
+            </n-popover>
+            <login v-model:show="showLoginModal"/>
+          </n-grid-item>
+        </n-grid>
+      </n-layout-header>
+      <n-layout has-sider>
+        <n-layout-sider
+            bordered
+            :collapsed-width="0"
+            collapse-mode="transform"
+            width="40%"
+            :collapsed="collapsed"
+            show-trigger="bar"
+            @collapse="collapsed = true"
+            @expand="collapsed = false"
+            class="main-left-layout-sider">
+          <n-grid
+              collapsed
+              :collapsed-rows="8"
+              :cols="1" style="height: 100%">
+            <n-grid-item/>
+            <n-grid-item/>
+            <n-grid-item>
+              <h2>CN 5FW Club</h2>
+            </n-grid-item>
+            <n-grid-item class="grid-item">
+              <n-menu
+                  :collapsed="collapsed"
+                  :collapsed-width="64"
+                  :options="AppMenuOptions"
+                  class="main-menu"
+              />
+            </n-grid-item>
+            <n-grid-item/>
+            <n-grid-item/>
+            <n-grid-item/>
+            <n-grid-item/>
+          </n-grid>
+        </n-layout-sider>
+      </n-layout>
+      <div v-if="!collapsed" class="main-mask" @click="collapsed = true"/>
+      <n-scrollbar ref="loadingBarTarget" trigger="hover" style="height: 90%;">
+        <router-view #="{ Component }">
+          <!--        <keep-alive exclude="live">-->
+          <!--          -->
+          <!--        </keep-alive>-->
+          <transition name="view" mode="out-in">
+            <component :is="Component"/>
+          </transition>
+        </router-view>
+      </n-scrollbar>
+      <n-layout-footer style="position: fixed; width: 100%; bottom: 0" bordered>
+        <h3>This Web Site Build By Vue3 + Vite + Naive UI, And Provided by 5FW.Club.IT(xuanzikong, tiangou)</h3>
+      </n-layout-footer>
+    </n-layout>
     <n-spin size="large" style="width: 100%; height: 100%;" :show="IsSpinShow">
       <template #description>
         <n-h2>
@@ -35,97 +124,8 @@ const collapsed = ref(true)
           </b>
         </n-h2>
       </template>
-      <div class="view-leave-active" :style="{opacity: IsSpinShow ? 0 : 100}">
-        <n-layout-header bordered>
-          <n-grid collapsed
-                  cols="2 1000:7">
-            <n-grid-item offset="0 1000:1" span="0 1000:1" class="grid-item">
-              <n-image :width="30" :height="30" :show-toolbar="false" :src="resolveStaticPath('5fw.svg')"></n-image>
-            </n-grid-item>
-            <n-grid-item class="grid-item" span="0 1000:3">
-              <n-menu mode="horizontal" class="main-menu"
-                      dropdown-placement="top"
-                      :options="AppMenuOptions"/>
-            </n-grid-item>
-            <n-grid-item class="grid-item">
-              <n-switch @update:value="switchTheme">
-                <template #unchecked>
-                  🌙
-                </template>
-                <template #checked>
-                  ☀️
-                </template>
-              </n-switch>
-            </n-grid-item>
-            <n-grid-item class="grid-item">
-              <n-popover trigger="hover">
-                <template #trigger>
-                  <n-button round style="vertical-align: middle"
-                            :bordered="false"
-                            @click="showLoginModal = true">
-                    <n-icon size="30">
-                      <log-in-outline/>
-                    </n-icon>
-                  </n-button>
-                </template>
-                <span>登录</span>
-              </n-popover>
-              <login v-model:show="showLoginModal"/>
-            </n-grid-item>
-          </n-grid>
-        </n-layout-header>
-        <n-layout has-sider>
-          <n-layout-sider
-              bordered
-              :collapsed-width="0"
-              collapse-mode="transform"
-              width="40%"
-              :collapsed="collapsed"
-              show-trigger="bar"
-              @collapse="collapsed = true"
-              @expand="collapsed = false"
-              class="main-left-layout-sider">
-            <n-grid
-                collapsed
-                :collapsed-rows="8"
-                :cols="1" style="height: 100%">
-              <n-grid-item/>
-              <n-grid-item/>
-              <n-grid-item>
-                <h2>CN 5FW Club</h2>
-              </n-grid-item>
-              <n-grid-item class="grid-item">
-                <n-menu
-                    :collapsed="collapsed"
-                    :collapsed-width="64"
-                    :options="AppMenuOptions"
-                    class="main-menu"
-                />
-              </n-grid-item>
-              <n-grid-item/>
-              <n-grid-item/>
-              <n-grid-item/>
-              <n-grid-item/>
-            </n-grid>
-          </n-layout-sider>
-        </n-layout>
-        <div v-if="!collapsed" class="main-mask" @click="collapsed = true"/>
-        <n-scrollbar ref="loadingBarTarget" trigger="hover" style="height: 90%;">
-          <router-view #="{ Component }">
-            <!--        <keep-alive exclude="live">-->
-            <!--          -->
-            <!--        </keep-alive>-->
-            <transition name="view" mode="out-in">
-              <component :is="Component"/>
-            </transition>
-          </router-view>
-        </n-scrollbar>
-        <n-layout-footer style="position: fixed; width: 100%; bottom: 0" bordered>
-          <h3>This Web Site Build By Vue3 + Vite + Naive UI, And Provided by 5FW.Club.IT(xuanzikong, tiangou)</h3>
-        </n-layout-footer>
-      </div>
     </n-spin>
-  </n-layout>
+  </div>
 </template>
 
 <style scoped>
