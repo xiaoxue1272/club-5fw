@@ -25,6 +25,8 @@ const collapsed = ref(true)
 
 </script>
 
+
+// todo 将页脚改为固钉 https://www.naiveui.com/zh-CN/os-theme/components/affix
 <template>
   <div>
     <n-spin size="large" style="width: 100%; height: 100%;" :show="IsSpinShow">
@@ -122,7 +124,7 @@ const collapsed = ref(true)
         </router-view>
       </n-scrollbar>
       <n-layout-footer style="position: fixed; width: 100%; bottom: 0" bordered>
-        <h3>This Web Site Build By Vue3 + Vite + Naive UI, And Provided by 5FW.Club.IT(xuanzikong, tiangou)</h3>
+        <h3>This Web Site Build By Vue3 + Vite + Naive UI, And Provided By 5FW.Club.IT(xuanzikong, tiangou)</h3>
       </n-layout-footer>
     </n-layout>
   </div>

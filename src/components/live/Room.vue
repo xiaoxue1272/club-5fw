@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import flvJs from "flv.js"
+import mpegts from "mpegts.js"
 import {onMounted, onUnmounted, ref} from "vue";
 import {NH1, NGradientText, NModal, NCard, NInput, NButton, FormItemRule, NFormItem} from "naive-ui";
 
@@ -12,7 +12,7 @@ const roomInputModelShow = ref(room.value == null || room.value === "")
 const roomInputModelCloseable = ref(true)
 const enterRoomButtonShow = ref(false)
 
-let flvPlayer = null
+let player: mpegts.Player | null
 
 const roomInputRule = ref<FormItemRule>({
   required: true,
@@ -35,31 +35,36 @@ function enterRoom() {
   roomInputModelShow.value = false
   roomInputModelCloseable.value = roomInput.value != null && roomInput.value !== ""
   console.log('roomInputModelCloseable', roomInputModelCloseable.value, 'roomInputModelShow', roomInputModelShow.value)
-  room.value = roomInput.value
-  localStorage.setItem("room", roomInput.value)
+  room.value = roomInput.value as string
+  localStorage.setItem("room", room.value)
   destroyVideoPlayer()
-  initVideoPlayer(roomInput.value)
-  document.getElementById("liveRoomBasicDiv").style.display = ""
+  if (!initVideoPlayer(room.value)) {
+    // todo 提示 当前浏览器暂不支持观看直播
+    alert("当前浏览器暂不支持观看直播")
+  }
+  document.getElementById("liveRoom")!.style.display = ""
 }
 
-function initVideoPlayer(room: String) {
-  let livePlayer = document.getElementById("livePlayer");
-  if (!flvJs.isSupported()) {
-    livePlayer.style.display = "none"
+function initVideoPlayer(room: String): boolean {
+  let playerElement = document.getElementById("livePlayer")!;
+  if (!mpegts.isSupported()) {
+    playerElement.style.display = "none"
+    return false
   }
-  flvPlayer = flvJs.createPlayer({
+  player = mpegts.createPlayer({
     type: 'flv',
     cors: true,
     url: 'https://live.5fw.club:7001/live/' + room +'.flv'
   });
-  flvPlayer.attachMediaElement(<HTMLMediaElement>livePlayer)
-  flvPlayer.load()
-  flvPlayer.play()
+  player.attachMediaElement(<HTMLMediaElement>playerElement)
+  player.load()
+  player.play()
+  return true
 }
 
 function destroyVideoPlayer() {
-  if (flvPlayer != null) {
-    flvPlayer.destroy()
+  if (player != null) {
+    player.destroy()
   }
 }
 
@@ -71,10 +76,13 @@ onMounted(() => {
   if (room.value == null || room.value === "") {
     roomInputModelShow.value = true
     roomInputModelCloseable.value = false
-    document.getElementById("liveRoomBasicDiv").style.display = "none"
+    document.getElementById("liveRoom")!.style.display = "none"
+    // todo 提示 请返回首页并选择直播间
     return
   }
-  initVideoPlayer(room.value)
+  if (!initVideoPlayer(room.value)) {
+    alert("当前浏览器暂不支持观看直播")
+  }
 })
 
 onUnmounted(() => {
@@ -144,35 +152,26 @@ onUnmounted(() => {
         </template>
       </n-card>
     </n-modal>
-    <div id="liveRoomBasicDiv">
-      <div class="padding-width70">
-        <div>
+    <div id="liveRoom" class="padding-width70-percent">
+      <div>
+        <div class="div-inline-block" style="position: relative; float: left">
           <n-h1 style="text-align: left" ><n-gradient-text type="success">{{ room }}的直播间</n-gradient-text></n-h1>
         </div>
-        <div></div>
-        <div>
+        <div class="div-inline-block" style="position: relative; float: right">
           <n-button quaternary round type="primary" @click="roomInputModelShow = true"><b>换台</b></n-button>
         </div>
       </div>
-      <video id="livePlayer" class="padding-width70-percent" controls autoplay/>
+      <video id="livePlayer" style="width: 100%;" controls autoplay/>
     </div>
   </div>
 </template>
 
 <style scoped>
+.div-inline-block {
+  display: inline-block;
+}
 .padding-width70-percent {
   width: 70%;
-  position: relative;
-}
-.padding-width70 {
-  width: 100%;
-  display: flex;
-}
-.padding-width70 :first-child{
-  width: 100%;
-  margin-left: 6%;
-}
-.padding-width70 :last-child{
-  margin-right: 15%;
+  margin: auto;
 }
 </style>

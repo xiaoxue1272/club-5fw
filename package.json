@@ -1,7 +1,7 @@
 {
   "name": "club-5fw",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.1.1",
   "type": "module",
   "scripts": {
     "dev default": "vite --port 5623 --host --mode default",
@@ -12,16 +12,16 @@
     "preview suffix": "vite build --mode suffix & vite preview --mode suffix"
   },
   "dependencies": {
-    "axios": "^1.5.1",
-    "flv.js": "^1.6.2",
+    "axios": "^1.6.7",
+    "mpegts.js": "^1.7.3",
     "vue": "^3.2.45",
-    "vue-router": "^4.1.6"
+    "vue-router": "^4.2.5"
   },
   "devDependencies": {
     "@vicons/ionicons5": "^0.12.0",
-    "@vitejs/plugin-legacy": "^4.0.1",
-    "@vitejs/plugin-vue": "^4.0.0",
-    "naive-ui": "^2.34.3",
+    "@vitejs/plugin-legacy": "^4.1.1",
+    "@vitejs/plugin-vue": "^4.6.2",
+    "naive-ui": "^2.37.3",
     "vfonts": "^0.0.3",
     "vite": "4.1.5"
   }

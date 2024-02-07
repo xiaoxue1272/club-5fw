@@ -6,7 +6,7 @@ import LiveMenuOptions from "../ts/components/liveMenu.ts";
 
 <template>
   <div style="padding-top: 5%">
-    <n-menu mode="horizontal" style="font-size: 20px" class="horizontal-menu-live-home" :options="LiveMenuOptions"/>
+    <n-menu mode="horizontal" style="font-size: 20px; justify-content: center" :options="LiveMenuOptions"/>
     <div style="padding-top: 3%">
       <router-view #="{ Component }">
         <keep-alive exclude="room">

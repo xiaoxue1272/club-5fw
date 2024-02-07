@@ -26,7 +26,6 @@ export function switchTheme(flag: boolean) {
 }
 
 
-
 export function resolveStaticPath(path: string): string {
     const BASE_URL: string = import.meta.env.BASE_URL
     if (BASE_URL.charAt(BASE_URL.length - 1) === '/') {
@@ -54,4 +53,8 @@ export function runPromiseCatching<T, R>(promise: Promise<T>, then?: ((value: T)
             console.log(reason)
             return null as R
         })
+}
+
+export function notification() {
+    // todo 弹出提示(通知)通用方法
 }
