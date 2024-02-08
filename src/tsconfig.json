@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "module": "commonjs",
+        "module": "NodeNext",
         "target": "ES6",
         "removeComments": true,
         "sourceMap": true,
@@ -8,7 +8,7 @@
         "forceConsistentCasingInFileNames": true,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
-        "strictNullChecks": true,
+        "strictNullChecks": false,
         "allowJs": true,
         "skipLibCheck": true,
         "lib": ["ES6", "dom", "ES2022"],

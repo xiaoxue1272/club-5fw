@@ -1,8 +1,9 @@
 import {Component, h, ref} from "vue";
-import {darkTheme, GlobalTheme, NIcon} from "naive-ui";
+import {darkTheme, GlobalTheme, NIcon, NotificationType, useNotification} from "naive-ui";
 import {RouterLink} from "vue-router";
 
 // router.beforeResolve()
+
 
 export const theme = ref<null | GlobalTheme>(null)
 
@@ -55,6 +56,14 @@ export function runPromiseCatching<T, R>(promise: Promise<T>, then?: ((value: T)
         })
 }
 
-export function notification() {
-    // todo 弹出提示(通知)通用方法
+export function notification(type: NotificationType, title: string, content: string, description?: string, meta?: string) {
+    useNotification()[type]({
+        title: title,
+        description: description,
+        content: content,
+        meta: meta,
+        closable: true,
+        duration: 3000,
+        keepAliveOnHover: true,
+    })
 }

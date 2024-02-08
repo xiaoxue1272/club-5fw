@@ -5,14 +5,16 @@ import {onMounted, onUnmounted, ref} from "vue";
 import {NH1, NGradientText, NModal, NCard, NInput, NButton, FormItemRule, NFormItem} from "naive-ui";
 
 import { router } from "../../ts/router"
+import {notification} from "../../ts/common/basic";
 
 const room = ref(localStorage.getItem("room"));
 const roomInput = ref(room.value)
 const roomInputModelShow = ref(room.value == null || room.value === "")
 const roomInputModelCloseable = ref(true)
 const enterRoomButtonShow = ref(false)
+const isVideoSupported: boolean = mpegts.isSupported()
 
-let player: mpegts.Player | null
+let player: mpegts.Player
 
 const roomInputRule = ref<FormItemRule>({
   required: true,
@@ -34,32 +36,22 @@ function toLiveHome() {
 function enterRoom() {
   roomInputModelShow.value = false
   roomInputModelCloseable.value = roomInput.value != null && roomInput.value !== ""
-  console.log('roomInputModelCloseable', roomInputModelCloseable.value, 'roomInputModelShow', roomInputModelShow.value)
   room.value = roomInput.value as string
   localStorage.setItem("room", room.value)
   destroyVideoPlayer()
-  if (!initVideoPlayer(room.value)) {
-    // todo 提示 当前浏览器暂不支持观看直播
-    alert("当前浏览器暂不支持观看直播")
-  }
-  document.getElementById("liveRoom")!.style.display = ""
+  initVideoPlayer(room.value)
+  document.getElementById("liveRoom").style.display = ""
 }
 
-function initVideoPlayer(room: String): boolean {
-  let playerElement = document.getElementById("livePlayer")!;
-  if (!mpegts.isSupported()) {
-    playerElement.style.display = "none"
-    return false
-  }
+function initVideoPlayer(room: String) {
   player = mpegts.createPlayer({
     type: 'flv',
     cors: true,
     url: 'https://live.5fw.club:7001/live/' + room +'.flv'
   });
-  player.attachMediaElement(<HTMLMediaElement>playerElement)
+  player.attachMediaElement(<HTMLMediaElement>document.getElementById("livePlayer"))
   player.load()
   player.play()
-  return true
 }
 
 function destroyVideoPlayer() {
@@ -72,17 +64,19 @@ onMounted(() => {
   room.value = localStorage.getItem("room")
   roomInput.value = localStorage.getItem("room")
   roomInputModelShow.value = room.value == null || room.value === ""
-  console.log('roomInputModelCloseable', roomInputModelCloseable.value, 'roomInputModelShow', roomInputModelShow.value)
+  if (!isVideoSupported) {
+    document.getElementById("livePlayer").style.display = "none"
+    notification("warning", "初始化视频播放器失败", "暂不支持当前浏览器")
+    return
+  }
   if (room.value == null || room.value === "") {
     roomInputModelShow.value = true
     roomInputModelCloseable.value = false
-    document.getElementById("liveRoom")!.style.display = "none"
-    // todo 提示 请返回首页并选择直播间
+    document.getElementById("liveRoom").style.display = "none"
+    notification("info", "未找到历史观看记录", "未找到历史观看记录")
     return
   }
-  if (!initVideoPlayer(room.value)) {
-    alert("当前浏览器暂不支持观看直播")
-  }
+  initVideoPlayer(room.value)
 })
 
 onUnmounted(() => {
@@ -128,16 +122,17 @@ onUnmounted(() => {
           role="dialog"
           aria-modal="true"
       >
-        <template #header>
-          <n-gradient-text type="info">
-            <b>
-              请输入房间号
-            </b>
-          </n-gradient-text>
-        </template>
+<!--        <template #header>-->
+<!--          <n-gradient-text type="info">-->
+<!--            <b>-->
+<!--              请输入房间号-->
+<!--            </b>-->
+<!--          </n-gradient-text>-->
+<!--        </template>-->
         <n-form-item :rule="roomInputRule">
           <n-input bordered clearable round placeholder="房间号" v-model:value="roomInput" />
         </n-form-item>
+
         <template #footer>
           <div>
             <n-button strong secondary round v-show="enterRoomButtonShow" type="info" :on-click="enterRoom">

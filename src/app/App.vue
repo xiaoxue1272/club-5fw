@@ -4,6 +4,7 @@ import {
   NGlobalStyle,
   NLoadingBarProvider,
   useOsTheme,
+  NNotificationProvider
 } from 'naive-ui'
 import dateZhCN from "naive-ui/es/locales/date/zhCN"
 import zhCN from 'naive-ui/es/locales/common/zhCN'
@@ -29,11 +30,13 @@ onMounted(() => {
   <n-loading-bar-provider>
     <n-config-provider :theme="theme" :date-locale="dateZhCN" :locale="zhCN">
       <n-global-style/>
+      <n-notification-provider>
+        <main-layout/>
+      </n-notification-provider>
       <!--    <n-layout>-->
       <!--      <layout-header :switch-theme="switchTheme"/>-->
       <!--      <layout-content/>-->
       <!--    </n-layout>-->
-      <main-layout/>
     </n-config-provider>
   </n-loading-bar-provider>
 </template>

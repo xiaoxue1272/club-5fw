@@ -26,7 +26,6 @@ const collapsed = ref(true)
 </script>
 
 
-// todo 将页脚改为固钉 https://www.naiveui.com/zh-CN/os-theme/components/affix
 <template>
   <div>
     <n-spin size="large" style="width: 100%; height: 100%;" :show="IsSpinShow">
