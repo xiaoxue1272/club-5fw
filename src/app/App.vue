@@ -30,7 +30,7 @@ onMounted(() => {
   <n-loading-bar-provider>
     <n-config-provider :theme="theme" :date-locale="dateZhCN" :locale="zhCN">
       <n-global-style/>
-      <n-notification-provider>
+      <n-notification-provider :max="5">
         <main-layout/>
       </n-notification-provider>
       <!--    <n-layout>-->

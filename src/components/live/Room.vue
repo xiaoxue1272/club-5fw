@@ -12,7 +12,7 @@ const roomInput = ref(room.value)
 const roomInputModelShow = ref(room.value == null || room.value === "")
 const roomInputModelCloseable = ref(true)
 const enterRoomButtonShow = ref(false)
-const isVideoSupported: boolean = mpegts.isSupported()
+const isFlvSupported: boolean = mpegts.isSupported()
 
 let player: mpegts.Player
 
@@ -64,19 +64,22 @@ onMounted(() => {
   room.value = localStorage.getItem("room")
   roomInput.value = localStorage.getItem("room")
   roomInputModelShow.value = room.value == null || room.value === ""
-  if (!isVideoSupported) {
+  let canInit: boolean = true
+  if (!isFlvSupported) {
     document.getElementById("livePlayer").style.display = "none"
     notification("warning", "初始化视频播放器失败", "暂不支持当前浏览器")
-    return
+    canInit = false
   }
   if (room.value == null || room.value === "") {
     roomInputModelShow.value = true
     roomInputModelCloseable.value = false
     document.getElementById("liveRoom").style.display = "none"
     notification("info", "未找到历史观看记录", "未找到历史观看记录")
-    return
+    canInit = false
   }
-  initVideoPlayer(room.value)
+  if (canInit) {
+    initVideoPlayer(room.value)
+  }
 })
 
 onUnmounted(() => {
